@@ -90,15 +90,6 @@ stages:
                 rm -f .DS_Store
                 rm -rf .github
 
-          # Upload compressed SQL
-          - task: CopyFilesOverSSH@0
-            displayName: "Upload odoo.sql.gz to VM"
-            inputs:
-              sshEndpoint: 'ssh-odoo17-production'
-              sourceFolder: '$(Agent.TempDirectory)'
-              contents: 'odoo.sql.gz'
-              targetFolder: '$(stagePath)/deploy-temp'
-
           # Uncompress SQL on VM
           - task: SSH@0
             displayName: "Uncompress odoo.sql.gz on VM"
